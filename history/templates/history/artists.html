@@ -1,0 +1,9 @@
+<h1>Howdy. These Are Made Up Singers. </h1>
+
+<ul>
+  {% for artist in artists %}
+    <li>
+      <a href="{% url 'history:detail' artist.id %}">{{artist.name}}</a>
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,14 @@
+<h1>This is an Artist and some Songs They Recorded</h1>
+
+<h2>{{artist.name}}</h2>
+<h3>Born on {{artist.birth_date}}</h3>
+<h3>Most Famous Song: {{artist.biggest_hit}}</h3>
+
+<h2>Some other songs {{artist.name}} is known for</h2>
+<ul>
+  {% for song in songs %}
+    <li>
+      {{song.title}}, from the album {{song.album}}
+    </li>
+  {% endfor %}
+</ul>
