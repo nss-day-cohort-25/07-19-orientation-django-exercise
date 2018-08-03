@@ -4,7 +4,8 @@ from . import views
 app_name = 'history'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
-    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
-    path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
-    path('<int:question_id>/vote/', views.vote, name='vote'),
+    path('artists/', views.ArtistListView.as_view(), name='artists'),
+    # path('artists/', views.ArtistListTemplateView.as_view(), name='artists'),
+    path('artists/<int:pk>/', views.ArtistDetailView.as_view(), name='artist_detail'),
+    path('artists/add/', views.ArtistFormView.as_view(), name='artist_form'),
 ]

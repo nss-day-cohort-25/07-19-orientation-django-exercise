@@ -1,11 +1,11 @@
 from django.db import models
 
 class Artist(models.Model):
-  name = models.TextField(default="")
-  birth_date = models.TextField(default="")
-  biggest_hit = models.TextField(default="")
+  name = models.CharField(default="", max_length=100)
+  birth_date = models.CharField(default="", max_length=100)
+  biggest_hit = models.CharField(default="", max_length=100)
 
 class Song(models.Model):
-  title = models.TextField(default="")
-  album = models.TextField(default="")
+  title = models.CharField(default="", max_length=100)
+  album = models.CharField(default="", max_length=100)
   artist = models.ForeignKey(Artist, on_delete=models.CASCADE, )

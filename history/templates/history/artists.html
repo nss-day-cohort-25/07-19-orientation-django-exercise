@@ -1,9 +1,9 @@
-<h1>Howdy. These Are Made Up Singers. </h1>
+<h1>Howdy. These Are Made Up Singers from ArtistListTemplateView </h1>
 
 <ul>
-  {% for artist in artists %}
+  {% for artist in view.artist_list %}
     <li>
-      <a href="{% url 'history:detail' artist.id %}">{{artist.name}}</a>
+      <a href="{% url 'history:artist_detail' artist.id %}">{{artist.name}}</a>
     </li>
   {% endfor %}
 </ul>
