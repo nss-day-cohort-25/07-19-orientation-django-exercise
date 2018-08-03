@@ -2,3 +2,15 @@
 <link rel="stylesheet" type="text/css" href="{% static 'history/main.css' %}" />
 
 <h1>{{view.greeting.msg}}</h1>
+
+{% block main_stuff %}
+
+<form action="/history/artists" method='get'>
+  <input type="submit" value="View My Artists">
+</form>
+
+<form action="/history/songs" method='get'>
+  <input type="submit" value="View My Songs">
+</form>
+
+{% endblock main_stuff %}
