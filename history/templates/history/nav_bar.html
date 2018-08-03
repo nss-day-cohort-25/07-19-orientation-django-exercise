@@ -1,0 +1,19 @@
+<nav>
+  {% if nav_location != 'artists' %}
+    <form action="/history/artists" method='get'>
+      <input type="submit" value="View My Artists">
+    </form>
+  {% endif %}
+
+  {% if nav_location != 'songs' %}
+    <form action="/history/songs" method='get'>
+      <input type="submit" value="View My Songs">
+    </form>
+  {% endif %}
+
+  {% if nav_location != 'home' %}
+    <form action="/history/" method='get'>
+      <input type="submit" value="Home">
+    </form>
+  {% endif %}
+</nav>

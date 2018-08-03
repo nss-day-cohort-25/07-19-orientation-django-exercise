@@ -1,0 +1,6 @@
+<h1>This is a Song<h1>
+
+<h2>{{song.title}}</h2>
+<h3>Performed by
+<a href="{% url 'history:artist_detail' song.artist.id %}"> {{song.artist.name}} <a/></h3>
+<h3>From the album {{song.album}}</h3>
