@@ -1,9 +1,16 @@
-<h1>Howdy. These Are Made Up Singers from ArtistListView</h1>
+{% extends "history/index.html" %}
 
-<ul>
-  {% for artist in artist_list %}
-  <li>
-    <a href="{% url 'history:artist_detail' artist.id %}">{{artist.name}}</a>
-  </li>
-  {% endfor %}
-</ul>
+{% block main_stuff %}
+
+  {% include "history/nav_bar.html" with nav_location=location %}
+
+  <h1>These Are Made Up Singers from ArtistListView </h1>
+
+  <ul>
+    {% for artist in artist_list %}
+    <li>
+      <a href="{% url 'history:artist_detail' artist.id %}">{{artist.name}}</a>
+    </li>
+    {% endfor %}
+  </ul>
+{% endblock main_stuff %}
