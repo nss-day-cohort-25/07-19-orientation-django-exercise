@@ -9,7 +9,6 @@ class IndexView(TemplateView):
   def greeting(self):
     return {"msg": "Welcome to My Music Collection"}
 
-
 # Below are two different ways of achieving the same result of a rendered view with generic class-based views
 # 1) 'ArtistListTemplateView' subclasses TemplateView. Here we have to provide a template, and we can bind artist data to the template's 'view' property with the artist_list method we define on the class
 # 2) 'ArtistListView' subclasses ListView. Here we don't point to a template. Django handles tfiguring that out by looking for one called 'artist_list' for us, and we bind the artist data to it by overriding the 'get_context_data' method that the ListView uses internally to find the data it needs to display for us in the DOM
