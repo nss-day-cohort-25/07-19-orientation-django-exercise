@@ -6,16 +6,6 @@ from .models import Artist
 
 class ArtistTest(TestCase):
 
-    # FYI:
-    # setUpTestData() is called once at the beginning of the test run for class-level setup. You'd use this to create objects that aren't going to be modified or changed in any of the test methods.
-    # If you use setUp() also/instead, it is called before every test function to set up any objects that may be modified by the test(every test function will get a "fresh" version of these objects).
-    # Do we need some kind of setup process for this?
-    # @classmethod
-    # def setUpTestData(cls):
-
-    #     cls.test_user = User.objects.create_user(
-    #         username="Fred", email="f@f.com", password="pass123")
-
     def test_list_artists(self):
         new_artist = Artist.objects.create(
             name="Suzy Saxophone",
