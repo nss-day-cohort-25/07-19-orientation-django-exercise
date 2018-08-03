@@ -16,4 +16,10 @@
       <input type="submit" value="Home">
     </form>
   {% endif %}
+
+  {% if nav_location != 'add_artist' %}
+    <form action="/history/artists/add" method='get'>
+      <input type="submit" value="Add Artist">
+    </form>
+  {% endif %}
 </nav>

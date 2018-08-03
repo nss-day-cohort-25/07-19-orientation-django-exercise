@@ -6,6 +6,7 @@ from history.forms import ArtistForm
 class IndexView(TemplateView):
   template_name = 'history/index.html'
 
+  # "location" gets attached to a built-in object in the template called 'view'
   def location(self):
     return 'home'
 # Below are two different ways of achieving the same result of a rendered view with generic class-based views
@@ -35,6 +36,11 @@ class ArtistFormView(FormView):
   form_class = ArtistForm
   # NOTE! Be sure to put the slash in front of the url to route properly
   success_url = '/history/artists/'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context["location"] = "add_artist"
+    return context
 
   def form_valid(self, form):
     # This method is called when valid form data has been POSTed.
