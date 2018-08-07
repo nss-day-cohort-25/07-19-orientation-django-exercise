@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Artist(models.Model):
   name = models.CharField(default="", max_length=100)
@@ -12,3 +13,6 @@ class Song(models.Model):
   title = models.CharField(default="", max_length=100)
   album = models.CharField(default="", max_length=100)
   artist = models.ForeignKey(Artist, on_delete=models.CASCADE, )
+
+  def get_absolute_url(self):
+    return reverse('history:song_detail', kwargs={'pk': self.pk})

@@ -10,5 +10,5 @@ urlpatterns = [
     path('artists/add/', views.ArtistFormView.as_view(), name='artist_form'),
     path('songs/', views.SongListView.as_view(), name='songs'),
     path('songs/<int:pk>/', views.SongDetailView.as_view(), name='song_detail'),
-    # path('songs/add/', views.SongFormView.as_view(), name='song_form'),
+    path('songs/<int:pk>/edit', views.SongEditView.as_view(), name='song_edit'),
 ]

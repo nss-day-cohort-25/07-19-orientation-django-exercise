@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, TemplateView, FormView, DetailView, CreateView
+from django.views.generic import ListView, TemplateView, FormView, DetailView, CreateView, UpdateView
+from django.urls import reverse_lazy
 from history.models import Artist, Song
-from history.forms import ArtistForm
+from history.forms import ArtistForm, SongForm
 
 class IndexView(TemplateView):
   template_name = 'history/index.html'
@@ -66,18 +67,31 @@ class SongListView(ListView):
     return context
 
 
-# class SongFormView(FormView):
-#   template_name = 'history/song_form.html'
-#   form_class = SongForm
-#   # NOTE! Be sure to put the slash in front of the url to route properly
-#   success_url = '/history/songs/'
+class SongFormView(FormView):
+  template_name = 'history/song_form.html'
+  form_class = SongForm
+  # NOTE! Be sure to put the slash in front of the url to route properly
+  success_url = '/history/songs/'
 
-#   def form_valid(self, form):
-#     # This method is called when valid form data has been POSTed.
-#     # It should return an HttpResponse.
-#     form.save()
-#     return super(SongFormView, self).form_valid(form)
+  def form_valid(self, form):
+    # This method is called when valid form data has been POSTed.
+    # It should return an HttpResponse.
+    form.save()
+    return super(SongFormView, self).form_valid(form)
 
 
 class SongDetailView(DetailView):
   model = Song
+
+class SongEditView(UpdateView):
+  model = Song
+  form_class = SongForm
+  template_name = 'history/song_form.html'
+
+  # Not needed if relying on get_absolute_url from the Song model
+  # def form_valid(self, form):
+  #   # This method is called when valid form data has been POSTed.
+  #   # It should return an HttpResponse.
+  #   form.save()
+  #   # To stay on the edit page:
+  #   return self.render_to_response(self.get_context_data(form=form))
