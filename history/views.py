@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, TemplateView, FormView, DetailView, CreateView, UpdateView
 from django.urls import reverse_lazy
-from history.models import Artist, Song
-from history.forms import ArtistForm, SongForm
+from history.models import Artist, Song, Album
+from history.forms import ArtistForm, SongForm, AlbumForm
 
 class IndexView(TemplateView):
   template_name = 'history/index.html'
@@ -79,14 +79,13 @@ class SongFormView(FormView):
     form.save()
     return super(SongFormView, self).form_valid(form)
 
-
 class SongDetailView(DetailView):
   model = Song
 
 class SongEditView(UpdateView):
   model = Song
   form_class = SongForm
-  template_name = 'history/song_form.html'
+  # template_name = 'history/song_form.html'
 
   # Not needed if relying on get_absolute_url from the Song model
   # def form_valid(self, form):
@@ -95,3 +94,36 @@ class SongEditView(UpdateView):
   #   form.save()
   #   # To stay on the edit page:
   #   return self.render_to_response(self.get_context_data(form=form))
+
+# ===============================
+# Album Views
+
+class AlbumListView(ListView):
+  model = Album
+  # Django defaults to referencing the data in the template as 'object_list'. Here is how we can rename it what we want
+  context_object_name = 'album_list'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context["location"] = "albums"
+    return context
+
+class AlbumFormView(FormView):
+  template_name = 'history/album_form.html'
+  form_class = AlbumForm
+  # NOTE! Be sure to put the slash in front of the url to route properly
+  success_url = '/history/albums/'
+
+  def form_valid(self, form):
+    # This method is called when valid form data has been POSTed.
+    # It should return an HttpResponse.
+    form.save()
+    return super(AlbumFormView, self).form_valid(form)
+
+class AlbumDetailView(DetailView):
+  model = Album
+
+class AlbumEditView(UpdateView):
+  model = Album
+  form_class = AlbumForm
+  template_name = 'history/album_form.html'

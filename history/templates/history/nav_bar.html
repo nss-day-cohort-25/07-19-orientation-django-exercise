@@ -22,4 +22,10 @@
       <input type="submit" value="Add Artist">
     </form>
   {% endif %}
+
+  {% if nav_location != 'albums' %}
+    <form action="/history/albums" method='get'>
+      <input type="submit" value="View My Albums">
+    </form>
+  {% endif %}
 </nav>

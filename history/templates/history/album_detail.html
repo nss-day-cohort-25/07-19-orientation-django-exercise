@@ -1,0 +1,12 @@
+<h1>This is an Album
+  <h1>
+
+    <h2>{{album.title}}: {{album.year_released}}</h2>
+
+    <ul>
+      {% comment %} loop over the artist's associated songs. So cool! {% endcomment %} {% for song in album.song_set.all %}
+      <li>
+        {{song.title}}
+      </li>
+      {% endfor %}
+    </ul>
