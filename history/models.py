@@ -17,9 +17,12 @@ class Album(models.Model):
   def __str__(self):
     return self.title
 
+  def get_absolute_url(self):
+    return reverse('history:album_detail', kwargs={'pk': self.pk})
+
 class Song(models.Model):
   title = models.CharField(default="", max_length=100)
-  albums = models.ManyToManyField(Album)
+  albums = models.ManyToManyField(Album, blank=True)
   artist = models.ForeignKey(Artist, on_delete=models.CASCADE, )
 
   def get_absolute_url(self):

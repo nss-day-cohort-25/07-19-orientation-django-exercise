@@ -4,7 +4,7 @@
 
 {% include "history/nav_bar.html" with nav_location=location %}
 
-<h3>Add a new album to your collection</h3>
+<h3>{% if title_action %} {{title_action}} {% else %} Add a new album to {% endif %} your collection</h3>
 
 <form method='post'>
   {% csrf_token %}

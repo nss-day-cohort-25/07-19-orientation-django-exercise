@@ -85,6 +85,12 @@ class SongDetailView(DetailView):
 class SongEditView(UpdateView):
   model = Song
   form_class = SongForm
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context["location"] = "song_edit"
+    context["title_action"] = "Edit a song from"
+    return context
   # template_name = 'history/song_form.html'
 
   # Not needed if relying on get_absolute_url from the Song model
@@ -108,11 +114,17 @@ class AlbumListView(ListView):
     context["location"] = "albums"
     return context
 
+
 class AlbumFormView(FormView):
   template_name = 'history/album_form.html'
   form_class = AlbumForm
   # NOTE! Be sure to put the slash in front of the url to route properly
   success_url = '/history/albums/'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context["location"] = "album_form"
+    return context
 
   def form_valid(self, form):
     # This method is called when valid form data has been POSTed.
@@ -127,3 +139,9 @@ class AlbumEditView(UpdateView):
   model = Album
   form_class = AlbumForm
   template_name = 'history/album_form.html'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context["location"] = "album_edit"
+    context["title_action"] = "Edit an album from"
+    return context

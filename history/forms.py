@@ -16,11 +16,8 @@ class SongForm(forms.ModelForm):
 
 
 class AlbumForm(forms.ModelForm):
+  songs = forms.ModelMultipleChoiceField(queryset=Song.objects.all())
 
   class Meta:
       model = Album
-      fields = ('title', 'year_released')
-
-  def __init__(self, *args, **kwargs):
-        super(AlbumForm, self).__init__(*args, **kwargs)
-        self.fields['artist']=forms.ModelChoiceField(queryset=Artist.objects.all())
+      fields = ('title', 'year_released', 'songs')
